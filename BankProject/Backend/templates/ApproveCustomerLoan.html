@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Approve Loan</title>
+</head>
+<body>
+{% block content %}
+<form action="{% url 'approve_loan' loanid=loan.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<div class="col-sm-12 col-xl-12">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h3 class="mb-4">Approve Loan</h3>
+                            <h6 class="mb-4">Review Loan Application</h6>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="name"
+                                       value="{{loan.USERNAME}}" disabled>
+                                <label>NAME</label>
+                            </div>
+                             <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="email"
+                                       value="{{loan.EMAIL}}" disabled>
+                                <label>EMAIL-ID</label>
+                            </div>
+                             <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="email"
+                                       value="{{loan.LOANTYPE}}" disabled>
+                                <label>LOAN TYPE</label>
+                            </div>
+                              <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="accno"
+                                       value="{{loan.ACCNO}}" disabled>
+                                <label>ACCOUNT NUMBER</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" name="balance"
+                                       value="{{loan.BALANCE}}" disabled>
+                                <label>BALANCE</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="aadhar"
+                                       value="{{loan.AADHAR}}" disabled>
+                                <label>AADHAR NO:</label>
+                            </div>
+                              <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="mobile"
+                                       value="{{loan.MOBILE}}" disabled>
+                                <label>MOBILE NO:</label>
+                            </div>
+                            <div class="mb-3">
+                                <img src="{{loan.IMAGE2.url}}"  alt="Image" style="width:80px;height:80px;">
+                            </div>
+                             <div class="form-floating mb-3">
+                                <input type="number" class="form-control" name="amount">
+                                <label>ENTER THE LOAN AMOUNT SANCTIONED</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">APPROVE LOAN</button>
+                        </div>
+                    </div>
+</form>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ {% if messages %}
+    {% for i in messages %}
+        {% if i.tags == 'warning' %}
+            <script>
+                swal('{{i}}', '', 'warning')
+            </script>
+        {% elif i.tags == 'error' %}
+            <script>
+                swal('{{i}}', '', 'error')
+            </script>
+        {% elif i.tags == 'success' %}
+            <script>
+                swal('{{i}}', '', 'success')
+            </script>
+        {% else %}
+            <script>
+              swal('{{i}}', '', 'info')
+            </script>
+        {% endif %}
+    {% endfor %}
+ {% endif %}
+{% endblock %}
+</body>
+</html>

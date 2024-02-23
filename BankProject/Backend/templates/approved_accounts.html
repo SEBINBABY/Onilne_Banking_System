@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display User Account Summary</title>
+</head>
+<body>
+<div class="col-sm-12 col-xl-14">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4"></h6>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">IMAGE</th>
+                                        <th scope="col">NAME</th>
+                                        <th scope="col">EMAIL</th>
+                                        <th scope="col">ACCOUNT TYPE</th>
+                                        <th scope="col">ACCOUNT NO:</th>
+                                        <th scope="col">MINIMUM BALANCE</th>
+                                        <th scope="col">AADHAR</th>
+                                        <th scope="col">MOBILE</th>
+                                        <th scope="col">DOB</th>
+                                        <th scope="col">ADDRESS</th>
+                                        <th scope="col">CITY</th>
+                                        <th scope="col">STATE</th>
+                                        <th scope="col">COUNTRY</th>
+                                        <th scope="col">STATUS</th>
+                                        <th scope="col">REJECT</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in approved_account %}
+                                    <tr>
+                                         <td>
+                                          <img src="{{i.IMAGE.url}}" alt="Image" style="width:80px;height:80px;">
+                                        </td>
+                                        <td>{{i.USERNAME}}</td>
+                                        <td>{{i.EMAIL}}</td>
+                                        <td>{{i.ACCTYPE}}</td>
+                                        <td>{{i.ACCNO}}</td>
+                                        <td>Rs. {{i.MINBALANCE}}</td>
+                                        <td>{{i.AADHAR}}</td>
+                                        <td>{{i.MOBILE}}</td>
+                                        <td>{{i.DATE}}</td>
+                                        <td>{{i.ADDRESS}}</td>
+                                        <td>{{i.CITY}}</td>
+                                        <td>{{i.STATE}}</td>
+                                        <td>{{i.COUNTRY}}</td>
+                                        <td>{{i.status}}</td>
+                                        <td>
+                                          <a href="{% url 'deletecustomeraccount' accid=i.id %}">
+                                            <button type="submit" class="btn btn-primary">REJECT</button>
+                                          </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ {% if messages %}
+    {% for i in messages %}
+        {% if i.tags == 'warning' %}
+            <script>
+                swal('{{i}}', '', 'warning')
+            </script>
+        {% elif i.tags == 'error' %}
+            <script>
+                swal('{{i}}', '', 'error')
+            </script>
+        {% elif i.tags == 'success' %}
+            <script>
+                swal('{{i}}', '', 'success')
+            </script>
+        {% else %}
+            <script>
+              swal('{{i}}', '', 'info')
+            </script>
+        {% endif %}
+    {% endfor %}
+ {% endif %}
+</body>
+</html>
+{% endblock %}

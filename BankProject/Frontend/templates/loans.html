@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<!-- Basic -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Site Metas -->
+    <title>ApexBank_loans</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="#" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="#" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css' %}" />
+    <!-- Pogo Slider CSS -->
+    <link rel="stylesheet" href="{% static 'home/css/pogo-slider.min.css' %}" />
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}" />
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'home/css/responsive.css' %}" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'home/css/custom.css' %}" />
+<style>
+body
+  {
+    background: ##D3D3D3;
+  }
+  h1
+  {
+    font-size: 45px;
+    text-align: center;
+    color: #FFFFFF;
+  }
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 30%;
+  height: 10px;
+  background: #ff9900;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: black;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #ff9900;
+  cursor: pointer;
+}
+input[type="range"] {
+    margin: auto;
+    -webkit-appearance: none;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 0; /* iOS */
+}
+
+::-webkit-slider-runnable-track {
+    background: #ff9900;
+}
+
+/*
+ * 1. Set to 0 width and remove border for a slider without a thumb
+ */
+::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px; /* 1 */
+    height: 40px;
+    background: #0000;
+    box-shadow: -100vw 0 0 100vw orange;
+    border: 2px solid #999; /* 1 */
+}
+
+</style>
+
+</head>
+
+<body id="inner_page" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
+
+    <!-- LOADER -->
+    <div id="preloader">
+        <div class="loader">
+            <img src="{% static 'home/images/loader.gif' %}" alt="#" />
+        </div>
+    </div>
+    <!-- end loader -->
+    <!-- END LOADER -->
+
+    <!-- Start header -->
+       <header class="top-header">
+        <div class="header_top">
+
+            <div class="container">
+                <div class="row">
+                    <div class="logo_section">
+                        <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'home/images/logo1.jpg' %}"
+                                                                       alt="image" style="width:80px;height:80px;"></a>
+                    </div>
+                    <div class="site_information" style="margin-top:-50px;">
+                        <ul>
+                            <li><a href="mailto:exchang@gmail.com"><img src="{% static 'home/images/mail_icon.png' %}"
+                                                                        alt="#" />www.apexbank.com</a></li>
+                            <li><a href="tel:exchang@gmail.com"><img src="{% static 'home/images/phone_icon.png' %}"
+                                                                     alt="#" /></a>1800-8899-555</li>
+                            <li><a class="join_bt" href="#">Join us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="header_bottom">
+          <div class="container">
+            <div class="col-xl-12 w-100">
+                <div class="menu_orange_section" style="background: #ff880e;">
+                   <nav class="navbar header-nav navbar-expand-lg">
+                     <div class="menu_section">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd" aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
+                    <ul class="navbar-nav">
+                        <li><a class="nav-link active" href="{% url 'home' %}">Home</a></li>
+                        <li><a class="nav-link" href="{% url 'about_page' %}">About</a></li>
+                        <li><a class="nav-link" href="{% url 'accounts' %}">Accounts</a></li>
+                        <li><a class="nav-link" href="{% url 'loans' %}">Loans</a></li>
+                        <li><a class="nav-link" href="{% url 'rating_review' %}">Contact</a></li>
+                        {% if request.session.NAME %}
+                           <li><a class="nav-link" style="width:400px;"
+                                  href="{% url 'UserLogout'  %}">Welcome...
+                               {{request.session.NAME|upper}}/Logout</a></li>
+                        {% else %}
+                        <li><a class="nav-link" href="{% url 'userloginsignup' %}">Login/Register</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                     </div>
+                 </nav>
+                </div>
+            </div>
+          </div>
+        </div>
+
+    </header>
+    <!-- End header -->
+
+
+    <!-- Start Banner -->
+    <div class="section inner_page_banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="banner_title">
+                        <h3>Loans</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Banner -->
+
+   <!-- section -->
+    <div class="section layout_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="full">
+                        <div class="heading_main text_align_center">
+                           <h2><span class="theme_color"></span>Loans</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for i in loan %}
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="full news_blog">
+                       <img class="img-responsive" src="{{i.image.url}}" alt="#" style="width:400px;height:400px;" />
+                       <div class="overlay"><a class="main_bt transparent" href="{% url 'loan_application' %}">Apply
+                           Online</a></div>
+                       <div class="blog_details">
+                         <h3>{{i.type}}</h3>
+                         <p>{{i.description}}</p>
+                       </div>
+                    </div>
+                </div>
+                {% endfor %}
+             </div>
+<!--HOME Loan Calculator starts-->
+    <div style="width:600px;height:800px;margin:100px 0 0 0;">
+        <h1 style="color:black;">Home Loan Calculator</h1>
+        <form id="loan-form">
+      <div class="slidecontainer">
+      <label style="color:#ff9900;">Amount:</label>
+      <input type="range" min="100000" max="100000000" value="1000000" step="100000" class="slider" id="amount">
+      </div><br>
+
+      <div class="slidecontainer">
+      <label style="color:#ff9900;">Interest:</label>
+      <input type="range" min="5" max="15" value="10" step="0.1" class="slider" id="interest">
+      </div><br>
+
+      <div class="slidecontainer">
+      <label style="color:#ff9900;">Years:</label>
+      <input type="range" min="1" max="30" value="10" class="slider" id="year">
+      </div><br>
+
+      <div style="background-color:#ff9900;width:400px;height:30px;text-align:center;">
+          <p class="title">Amount: <span id="demo1"></span></p></div>
+      <div style="background-color:#ff9900;width:400px;height:30px;text-align:center;">
+          <p class="title">Interest Rate: <span id="demo2"></span></p></div>
+      <div style="background-color:#ff9900;width:400px;height:30px;text-align:center;">
+          <p class="title">Years: <span id="demo3"></span></p></div>
+
+      <div class="control">
+        <button class="btn btn-secondary" style="text-align:center;margin:20px 0 0 150px;">Calculate</button>
+      </div>
+
+                  <!-- RESULTS -->
+     <div id="result" style="width:600px;height:320px;margin:-350px 0 0  450px;">
+            <div style="background-color:#d7d7c1;width:400px;height:80px;text-align:center;">
+              <p id="monthlyPayment">₹ </p>
+              <p>Monthly Payments</p>
+            </div>
+            <div style="background-color:#d7d7c1;width:400px;height:80px;text-align:center;">
+              <p id="totalInterest">₹</p>
+              <p>Total Interest</p>
+            </div>
+            <div style="background-color:#d7d7c1;width:400px;height:80px;text-align:center;">
+              <p id="totalPayment">₹ </p>
+              <p>Total Amount</p>
+            </div>
+     </div>
+  </form>
+    </div>
+<!--   HOME Loan Calculator Ends-->
+<!--PERSONAL Loan Calculator starts-->
+    <div style="width:600px;height:800px;margin:-200px 0 0 0;">
+        <h1 style="color:black;">Personal Loan Calculator</h1>
+        <form id="loan-form1">
+      <div class="slidecontainer">
+      <label style="color:#ff9900;">Amount:</label>
+      <input type="range" min="50000" max="4000000" value="1000000" step="100000" class="slider" id="amount1">
+      </div><br>
+
+      <div class="slidecontainer">
+      <label style="color:#ff9900;">Interest:</label>
+      <input type="range" min="10.5" max="15" value="21" step="0.1" class="slider" id="interest1">
+      </div><br>
+
+      <div class="slidecontainer">
+      <label style="color:#ff9900;">Years:</label>
+      <input type="range" min="1" max="5" value="10" class="slider" id="year1">
+      </div><br>
+
+      <div style="background-color:#ff9900;width:400px;height:30px;text-align:center;">
+          <p class="title">Amount: <span id="demo21"></span></p></div>
+      <div style="background-color:#ff9900;width:400px;height:30px;text-align:center;">
+          <p class="title">Interest Rate: <span id="demo22"></span></p></div>
+      <div style="background-color:#ff9900;width:400px;height:30px;text-align:center;">
+          <p class="title">Years: <span id="demo23"></span></p></div>
+
+      <div class="control">
+        <button class="btn btn-secondary" style="text-align:center;margin:20px 0 0 150px;">Calculate</button>
+      </div>
+
+                  <!-- RESULTS -->
+     <div id="result1" style="width:600px;height:320px;margin:-350px 0 0  450px;">
+            <div style="background-color:#d7d7c1;width:400px;height:80px;text-align:center;">
+              <p id="monthlyPayment1">₹ </p>
+              <p>Monthly Payments</p>
+            </div>
+            <div style="background-color:#d7d7c1;width:400px;height:80px;text-align:center;">
+              <p id="totalInterest1">₹</p>
+              <p>Total Interest</p>
+            </div>
+            <div style="background-color:#d7d7c1;width:400px;height:80px;text-align:center;">
+              <p id="totalPayment1">₹ </p>
+              <p>Total Amount</p>
+            </div>
+     </div>
+  </form>
+    </div>
+<!--   PERSONAL Loan Calculator Ends-->
+<!--EDUCATION Loan Calculator starts-->
+    <div style="width:600px;height:800px;margin:-200px 0 0 0;">
+        <h1 style="color:black;">Education Loan Calculator</h1>
+        <form id="loan-form3">
+      <div class="slidecontainer">
+      <label style="color:#ff9900;">Amount:</label>
+      <input type="range" min="0" max="1000000" value="1000000" step="100000" class="slider" id="amount3">
+      </div><br>
+
+      <div class="slidecontainer">
+      <label style="color:#ff9900;">Interest:</label>
+      <input type="range" min="9.55" max="13.25" value="10" step="0.1" class="slider" id="interest3">
+      </div><br>
+
+      <div class="slidecontainer">
+      <label style="color:#ff9900;">Years:</label>
+      <input type="range" min="1" max="15" value="10" class="slider" id="year3">
+      </div><br>
+
+      <div style="background-color:#ff9900;width:400px;height:30px;text-align:center;">
+          <p class="title">Amount: <span id="demo31"></span></p></div>
+      <div style="background-color:#ff9900;width:400px;height:30px;text-align:center;">
+          <p class="title">Interest Rate: <span id="demo32"></span></p></div>
+      <div style="background-color:#ff9900;width:400px;height:30px;text-align:center;">
+          <p class="title">Years: <span id="demo33"></span></p></div>
+
+      <div class="control">
+        <button class="btn btn-secondary" style="text-align:center;margin:20px 0 0 150px;">Calculate</button>
+      </div>
+
+                  <!-- RESULTS -->
+     <div id="result3" style="width:600px;height:320px;margin:-350px 0 0  450px;">
+            <div style="background-color:#d7d7c1;width:400px;height:80px;text-align:center;">
+              <p id="monthlyPayment3">₹ </p>
+              <p>Monthly Payments</p>
+            </div>
+            <div style="background-color:#d7d7c1;width:400px;height:80px;text-align:center;">
+              <p id="totalInterest3">₹</p>
+              <p>Total Interest</p>
+            </div>
+            <div style="background-color:#d7d7c1;width:400px;height:80px;text-align:center;">
+              <p id="totalPayment3">₹ </p>
+              <p>Total Amount</p>
+            </div>
+     </div>
+  </form>
+    </div>
+<!--   EDUCATION Loan Calculator Ends-->
+    </div>
+    </div>
+    <!-- end section -->
+
+    <!-- Start Footer -->
+       <footer class="footer-box">
+        <div class="container">
+            <div class="row">
+               <div class="col-md-12 white_fonts">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="full">
+                                <img class="img-responsive" src="{% static 'home/images/foo.gif' %}" alt="#"
+                                style="width:180px;height:120px;margin-top:80px;"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="full">
+                                <h3>Quick Links</h3>
+                            </div>
+                            <div class="full">
+                                <ul class="menu_footer">
+                                    <li><a href="{% url 'home' %}">> Home</a></li>
+                                    <li><a href="{% url 'about_page' %}">> About</a></li>
+                                    <li><a href="{% url 'accounts' %}">> Accounts</a></li>
+                                    <li><a href="{% url 'loans' %}">> Loans</a></li>
+                                    <li><a href="{% url 'rating_review' %}">> Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="full">
+                                <div class="footer_blog full white_fonts">
+                             <h3>Newsletter</h3>
+                             <p>Subscribe our Newsletter to get latest updates.</p>
+                             <div class="newsletter_form">
+                                <form action="index.html">
+                                   <input type="email" placeholder="Your Email" name="#" required="">
+                                   <button>Submit</button>
+                                </form>
+                             </div>
+                         </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="full">
+                                <div class="footer_blog full white_fonts">
+                             <h3>Contact us</h3>
+                             <ul class="full">
+                               <li><img src="{% static 'home/images/i5.png' %}"><span>Barakhamba Road
+                        No 16, Ground Floor, DCM Building, IOH Block Barakhamba Road<br>Mumbai - 110001<br></span></li>
+                               <li><img src="{% static 'home/images/i6.png' %}"><span>www.apexbank.com</span></li>
+                               <li><img src="{% static 'home/images/i7.png' %}"><span>1800-8899-555</span></li>
+                             </ul>
+                         </div>
+                            </div>
+                        </div>
+					</div>
+                </div>
+			 </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+
+    <a href="#" id="scroll-to-top" class="hvr-radial-out"><i class="fa fa-angle-up"></i></a>
+
+
+    <!-- ALL JS FILES -->
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="{% static 'home/js/jquery.min.js' %}"></script>
+	<script src="{% static 'home/js/popper.min.js' %}"></script>
+    <script src="{% static 'home/js/bootstrap.min.js' %}"></script>
+    <!-- ALL PLUGINS -->
+    <script src="{% static 'home/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'home/js/jquery.pogo-slider.min.js' %}"></script>
+    <script src="{% static 'home/js/slider-index.js' %}"></script>
+    <script src="{% static 'home/js/smoothscroll.js' %}"></script>
+    <script src="{% static 'home/js/form-validator.min.js' %}"></script>
+    <script src="{% static 'home/js/contact-form-script.js' %}"></script>
+    <script src="{% static 'home/js/isotope.min.js' %}"></script>
+    <script src="{% static 'home/js/images-loded.min.js' %}"></script>
+    <script src="{% static 'home/js/custom.js' %}"></script>
+<script>
+var sliderA = document.getElementById("amount");
+var sliderB = document.getElementById("interest");
+var sliderC = document.getElementById("year");
+var outputA = document.getElementById("demo1");
+var outputB = document.getElementById("demo2");
+var outputC = document.getElementById("demo3");
+
+outputA.innerHTML = sliderA.value;
+outputB.innerHTML = sliderB.value;
+outputC.innerHTML = sliderC.value;
+
+sliderA.oninput = function() {
+  outputA.innerHTML = this.value;
+  var out1=outputA;
+}
+sliderB.oninput = function() {
+  outputB.innerHTML = this.value;
+  var out2=outputB;
+}
+sliderC.oninput = function() {
+  outputC.innerHTML = this.value;
+  var out3=outputC;
+}
+document.getElementById("loan-form").addEventListener("submit", computeResults);
+
+function computeResults(e) {
+
+  const UIamount1 = sliderA.value;
+  const UIinterest1 = sliderB.value;
+  const UIyears1 = sliderC.value;
+
+  const principal1 = parseFloat(UIamount1);
+  const CalculateInterest1 = parseFloat(UIinterest1) / 100 / 12;
+  const calculatedPayments1 = parseFloat(UIyears1) * 12;
+
+  //Compute monthly Payment
+
+  const x1 = Math.pow(1 + CalculateInterest1, calculatedPayments1);
+  const monthly1 = (principal1 * x1 * CalculateInterest1) / (x1 - 1);
+  const monthlyPayment1 = monthly1.toFixed(2);
+
+  //Compute Interest
+
+  const totalInterest1 = (monthly1 * calculatedPayments1 - principal1).toFixed(2);
+
+  //Compute Total Payment
+
+  const totalPayment1 = (monthly1 * calculatedPayments1).toFixed(2);
+
+  //Show results
+
+  document.getElementById("monthlyPayment").innerHTML = "₹ " + monthlyPayment1;
+
+  document.getElementById("totalInterest").innerHTML = "₹ " + totalInterest1;
+
+  document.getElementById("totalPayment").innerHTML = "₹ " + totalPayment1;
+    e.preventDefault();
+}
+</script>
+<script>
+var sliderD = document.getElementById("amount1");
+var sliderE = document.getElementById("interest1");
+var sliderF = document.getElementById("year1");
+var outputD = document.getElementById("demo21");
+var outputE = document.getElementById("demo22");
+var outputF = document.getElementById("demo23");
+
+outputD.innerHTML = sliderD.value;
+outputE.innerHTML = sliderE.value;
+outputF.innerHTML = sliderF.value;
+
+sliderD.oninput = function() {
+  outputD.innerHTML = this.value;
+  var out1=outputD;
+}
+sliderE.oninput = function() {
+  outputE.innerHTML = this.value;
+  var out2=outputE;
+}
+sliderF.oninput = function() {
+  outputF.innerHTML = this.value;
+  var out3=outputF;
+}
+document.getElementById("loan-form1").addEventListener("submit", computeResult);
+
+function computeResult(e) {
+
+  const UIamount2 = sliderD.value;
+  const UIinterest2 = sliderE.value;
+  const UIyears2 = sliderF.value;
+
+  const principal2 = parseFloat(UIamount2);
+  const CalculateInterest2 = parseFloat(UIinterest2) / 100 / 12;
+  const calculatedPayments2 = parseFloat(UIyears2) * 12;
+
+  //Compute monthly Payment
+
+  const x2 = Math.pow(1 + CalculateInterest2, calculatedPayments2);
+  const monthly2 = (principal2 * x2 * CalculateInterest2) / (x2 - 1);
+  const monthlyPayment2 = monthly2.toFixed(2);
+
+  //Compute Interest
+
+  const totalInterest2 = (monthly2 * calculatedPayments2 - principal2).toFixed(2);
+
+  //Compute Total Payment
+
+  const totalPayment2 = (monthly2 * calculatedPayments2).toFixed(2);
+
+  //Show results
+
+  document.getElementById("monthlyPayment1").innerHTML = "₹ " + monthlyPayment2;
+
+  document.getElementById("totalInterest1").innerHTML = "₹ " + totalInterest2;
+
+  document.getElementById("totalPayment1").innerHTML = "₹ " + totalPayment2;
+    e.preventDefault();
+}
+</script>
+<script>
+var slider1 = document.getElementById("amount3");
+var slider2 = document.getElementById("interest3");
+var slider3 = document.getElementById("year3");
+var output1 = document.getElementById("demo31");
+var output2 = document.getElementById("demo32");
+var output3 = document.getElementById("demo33");
+
+output1.innerHTML = slider1.value;
+output2.innerHTML = slider2.value;
+output3.innerHTML = slider3.value;
+
+slider1.oninput = function() {
+  output1.innerHTML = this.value;
+  var out1=output1;
+}
+slider2.oninput = function() {
+  output2.innerHTML = this.value;
+  var out2=output2;
+}
+slider3.oninput = function() {
+  output3.innerHTML = this.value;
+  var out3=output3;
+}
+document.getElementById("loan-form3").addEventListener("submit", computeResults);
+
+function computeResults(e) {
+
+  const UIamount = slider1.value;
+  const UIinterest = slider2.value;
+  const UIyears = slider3.value;
+
+  const principal = parseFloat(UIamount);
+  const CalculateInterest = parseFloat(UIinterest) / 100 / 12;
+  const calculatedPayments = parseFloat(UIyears) * 12;
+
+  //Compute monthly Payment
+
+  const x = Math.pow(1 + CalculateInterest, calculatedPayments);
+  const monthly = (principal * x * CalculateInterest) / (x - 1);
+  const monthlyPayment = monthly.toFixed(2);
+
+  //Compute Interest
+
+  const totalInterest = (monthly * calculatedPayments - principal).toFixed(2);
+
+  //Compute Total Payment
+
+  const totalPayment = (monthly * calculatedPayments).toFixed(2);
+
+  //Show results
+
+  document.getElementById("monthlyPayment3").innerHTML = "₹ " + monthlyPayment;
+
+  document.getElementById("totalInterest3").innerHTML = "₹ " + totalInterest;
+
+  document.getElementById("totalPayment3").innerHTML = "₹ " + totalPayment;
+    e.preventDefault();
+}
+</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ {% if messages %}
+    {% for i in messages %}
+        {% if i.tags == 'warning' %}
+            <script>
+                swal('{{i}}', '', 'warning')
+            </script>
+        {% elif i.tags == 'error' %}
+            <script>
+                swal('{{i}}', '', 'error')
+            </script>
+        {% elif i.tags == 'success' %}
+            <script>
+                swal('{{i}}', '', 'success')
+            </script>
+        {% else %}
+            <script>
+              swal('{{i}}', '', 'info')
+            </script>
+        {% endif %}
+    {% endfor %}
+ {% endif %}
+
+</body>
+
+</html>

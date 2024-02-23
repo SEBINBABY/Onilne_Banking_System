@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display_Accounts</title>
+</head>
+<body>
+<div class="col-sm-12 col-xl-14">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">Blocked Account Details</h6>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ACCOUNT NAME</th>
+                                        <th scope="col">EMAIL-ID</th>
+                                        <th scope="col">MOBILE NUMBER</th>
+                                        <th scope="col">PROFILE IMAGE</th>
+                                        <th scope="col">ACTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in blocked_ %}
+                                    <tr>
+                                        <td>{{i.NAME}}</td>
+                                        <td>{{i.EMAIL}}</td>
+                                        <td>{{i.MOBILE}}</td>
+                                        <td>
+                                          <img src="{{i.PROFILEMAGE.url}}" alt="Image" style="width:80px;height:80px;">
+                                        </td>
+                                        <td>
+                                          <a href="{% url 'unblock' %}">
+                                            <button type="submit" class="btn btn-danger">UNBLOCK</button>
+                                          </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ {% if messages %}
+    {% for i in messages %}
+        {% if i.tags == 'warning' %}
+            <script>
+                swal('{{i}}', '', 'warning')
+            </script>
+        {% elif i.tags == 'error' %}
+            <script>
+                swal('{{i}}', '', 'error')
+            </script>
+        {% elif i.tags == 'success' %}
+            <script>
+                swal('{{i}}', '', 'success')
+            </script>
+        {% else %}
+            <script>
+              swal('{{i}}', '', 'info')
+            </script>
+        {% endif %}
+    {% endfor %}
+ {% endif %}
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display User Loan Summary</title>
+</head>
+<body>
+<div class="col-sm-12 col-xl-14">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4"></h6>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">NAME</th>
+                                        <th scope="col">IMAGE</th>
+                                        <th scope="col">DOCUMENT</th>
+                                        <th scope="col">EMAIL</th>
+                                        <th scope="col">LOAN TYPE</th>
+                                        <th scope="col">ACCOUNT NO:</th>
+                                        <th scope="col">BALANCE</th>
+                                        <th scope="col">AADHAR</th>
+                                        <th scope="col">MOBILE</th>
+                                        <th scope="col">STATUS</th>
+                                        <th scope="col">LOAN AMOUNT</th>
+                                        <th scope="col">APPROVE</th>
+                                        <th scope="col">REJECT</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in pending_loan %}
+                                    <tr>
+                                         <td>{{i.USERNAME}}</td>
+                                         <td>
+                                          <img src="{{i.IMAGE2.url}}" alt="Image" style="width:80px;height:80px;">
+                                        </td>
+                                        <td>
+                                             <a download href="{{i.document.url}}">{{i.document}}</a>
+                                        </td>
+                                        <td>{{i.EMAIL}}</td>
+                                        <td>{{i.LOANTYPE}}</td>
+                                        <td>{{i.ACCNO}}</td>
+                                        <td>Rs. {{i.BALANCE}}</td>
+                                        <td>{{i.AADHAR}}</td>
+                                        <td>{{i.MOBILE}}</td>
+                                        <td>{{i.status}}</td>
+                                        <td>{{i.loanamount}}</td>
+                                        <td>
+                                          <a href="{% url 'loan_sanction' loanid=i.id %}">
+                                            <button type="submit" class="btn btn-primary">APPROVE</button>
+                                          </a>
+                                        </td>
+                                        <td>
+                                          <a href="{% url 'delete_userloan' loanid=i.id %}">
+                                            <button type="submit" class="btn btn-primary">REJECT</button>
+                                          </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ {% if messages %}
+    {% for i in messages %}
+        {% if i.tags == 'warning' %}
+            <script>
+                swal('{{i}}', '', 'warning')
+            </script>
+        {% elif i.tags == 'error' %}
+            <script>
+                swal('{{i}}', '', 'error')
+            </script>
+        {% elif i.tags == 'success' %}
+            <script>
+                swal('{{i}}', '', 'success')
+            </script>
+        {% else %}
+            <script>
+              swal('{{i}}', '', 'info')
+            </script>
+        {% endif %}
+    {% endfor %}
+ {% endif %}
+</body>
+</html>
+{% endblock %}

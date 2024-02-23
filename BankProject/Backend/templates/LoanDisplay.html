@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display_Loans</title>
+</head>
+<body>
+<div class="col-sm-12 col-xl-14">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">Loan Details</h6>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">TYPE</th>
+                                        <th scope="col">DESCRIPTION</th>
+                                        <th scope="col">IMAGE</th>
+                                        <th scope="col">EDIT</th>
+                                        <th scope="col">DELETE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in loan %}
+                                    <tr>
+                                        <td>{{i.type}}</td>
+                                        <td>{{i.description}}</td>
+                                        <td>
+                                          <img src="{{i.image.url}}" alt="Image" style="width:80px;height:80px;">
+                                        </td>
+                                        <td>
+                                          <a href="{% url 'loan_edit' loan_id=i.id %}">
+                                            <button type="submit" class="btn btn-primary">EDIT</button>
+                                          </a>
+                                        </td>
+                                        <td>
+                                          <a href="{% url 'delete_loan' loan_id=i.id %}">
+                                            <button type="submit" class="btn btn-primary">DELETE</button>
+                                          </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ {% if messages %}
+    {% for i in messages %}
+        {% if i.tags == 'warning' %}
+            <script>
+                swal('{{i}}', '', 'warning')
+            </script>
+        {% elif i.tags == 'error' %}
+            <script>
+                swal('{{i}}', '', 'error')
+            </script>
+        {% elif i.tags == 'success' %}
+            <script>
+                swal('{{i}}', '', 'success')
+            </script>
+        {% else %}
+            <script>
+              swal('{{i}}', '', 'info')
+            </script>
+        {% endif %}
+    {% endfor %}
+ {% endif %}
+</body>
+</html>
+{% endblock %}

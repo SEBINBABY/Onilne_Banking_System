@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add News</title>
+</head>
+<body>
+{% block content %}
+<form action="{% url 'save_news' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<div class="col-sm-12 col-xl-12">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h3 class="mb-4">News</h3>
+                            <h6 class="mb-4">Add Current News here</h6>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput" name="title"
+                                       placeholder="TITLE">
+                                <label for="floatingInput">TITLE</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" placeholder="SHORT DESCRIPTION"
+                                          name="short_desc" style="height: 150px;"></textarea>
+                                <label>SHORT DESCRIPTION</label>
+                            </div>
+                              <div class="form-floating mb-3">
+                                <textarea class="form-control" placeholder="FULL DESCRIPTION"
+                                          name="full_desc" style="height: 150px;"></textarea>
+                                <label>FULL DESCRIPTION</label>
+                            </div>
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">UPLOAD IMAGE</label>
+                                <input class="form-control" type="file" id="formFile" name="image">
+                            </div>
+                            <button type="submit" class="btn btn-primary">ADD NEWS</button>
+                        </div>
+                    </div>
+</form>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ {% if messages %}
+    {% for i in messages %}
+        {% if i.tags == 'warning' %}
+            <script>
+                swal('{{i}}', '', 'warning')
+            </script>
+        {% elif i.tags == 'error' %}
+            <script>
+                swal('{{i}}', '', 'error')
+            </script>
+        {% elif i.tags == 'success' %}
+            <script>
+                swal('{{i}}', '', 'success')
+            </script>
+        {% else %}
+            <script>
+              swal('{{i}}', '', 'info')
+            </script>
+        {% endif %}
+    {% endfor %}
+ {% endif %}
+{% endblock %}
+</body>
+</html>

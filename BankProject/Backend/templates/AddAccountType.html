@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Account Type</title>
+</head>
+<body>
+{% block content %}
+<form action="{% url 'typesave' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<div class="col-sm-12 col-xl-12">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h3 class="mb-4">Add Account Types</h3>
+                            <h6 class="mb-4">Add your Account Types here</h6>
+                            <div class="col-sm-12 col-xl-12">
+                            <div class="bg-light rounded h-100">
+                            <h6 class="mb-4">ACCOUNT NAME</h6>
+                                <select class="form-control mb-3" aria-label="Default select example" name="AccName">
+                                <option>Select Your Account</option>
+                                {% for i in account %}
+                                <option>{{i.ACCNAME}}</option>
+                                {% endfor %}
+                            </select>
+                            </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput" name="TypeName"
+                                       placeholder="ACCOUNT TYPE NAME">
+                                <label for="floatingInput">ACCOUNT TYPE NAME</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput" name="TypeDesc1"
+                                       placeholder="SHORT DESCRIPTION">
+                                <label for="floatingInput">SHORT DESCRIPTION</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" placeholder="FULL DESCRIPTION" id="floatingTextarea"
+                                          name="TypeDesc2" style="height: 150px;"></textarea>
+                                <label for="floatingTextarea">FULL DESCRIPTION</label>
+                            </div>
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">UPLOAD IMAGE 1</label>
+                                <input class="form-control" type="file" id="formFile" name="TypeImage">
+                            </div>
+                            <button type="submit" class="btn btn-primary">ADD ACCOUNT TYPE</button>
+                        </div>
+                    </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ {% if messages %}
+    {% for i in messages %}
+        {% if i.tags == 'warning' %}
+            <script>
+                swal('{{i}}', '', 'warning')
+            </script>
+        {% elif i.tags == 'error' %}
+            <script>
+                swal('{{i}}', '', 'error')
+            </script>
+        {% elif i.tags == 'success' %}
+            <script>
+                swal('{{i}}', '', 'success')
+            </script>
+        {% else %}
+            <script>
+              swal('{{i}}', '', 'info')
+            </script>
+        {% endif %}
+    {% endfor %}
+ {% endif %}
+</form>
+{% endblock %}
+</body>
+</html>
